@@ -20,9 +20,11 @@ services:
       - POSTGRES_RANDOM_ROOT_PASSWORD=yes
       - POSTGRES_DB=app
       - POSTGRES_USER=app
-      - POSTGRES_PASSWORD=pass
+      - POSTGRES_PASSWORD=qwerty123
 
   nodejs:
     build: ./gate-simulator
+    image: node:latest
+    restart: always
     ports:
       - '9999:9999'
