@@ -64,7 +64,7 @@ public class DataHelper {
     }
 
     public static String getValidName() {
-        Faker faker = new Faker(new Locale("ru"));
+        Faker faker = new Faker(new Locale("en"));
         return faker.name().firstName() + " " + faker.name().lastName();
     }
 

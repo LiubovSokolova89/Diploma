@@ -37,7 +37,6 @@ public class CreditTest {
     }
     // Тесты на Payment Gate
     @Test
-    @Order(1)
     void shouldBuyInCreditGate() throws SQLException {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), getValidNameInLatinLetters(), getValidCvc());
         val startPage = new StartPage();
@@ -50,7 +49,6 @@ public class CreditTest {
 
     //passed
     @Test
-    @Order(2)
     void shouldBuyInCreditGateWithNameInLatinLetters() throws SQLException {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), getValidNameInLatinLetters(), getValidCvc());
         val startPage = new StartPage();
@@ -63,7 +61,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(3)
     void shouldNotBuyInCreditGateWithDeclinedCardNumber() throws SQLException {
         Card card = new Card(getDeclinedNumber(), getCurrentMonth(), getNextYear(), getValidName(), getValidCvc());
         val startPage = new StartPage();
@@ -74,10 +71,8 @@ public class CreditTest {
 
     }
 
-    //CardNumberField
-    //failed
+
     @Test
-    @Order(1)
     void shouldNotBuyInCreditGateWithInvalidCardNumber() throws SQLException {
         Card card = new Card(getInvalidCardNumber(), getCurrentMonth(), getNextYear(), getValidName(), getValidCvc());
         val startPage = new StartPage();
@@ -90,7 +85,6 @@ public class CreditTest {
 
     //passed
     @Test
-    @Order(2)
     void shouldNotBuyInCreditGateWithShortCardNumber() {
         Card card = new Card(getShortCardNumber(), getCurrentMonth(), getNextYear(), getValidName(), getValidCvc());
         val startPage = new StartPage();
@@ -102,7 +96,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(3)
     void shouldNotBuyInCreditGateWithEmptyCardNumber() {
         Card card = new Card(null, getCurrentMonth(), getNextYear(), getValidName(), getValidCvc());
         val startPage = new StartPage();
@@ -112,10 +105,8 @@ public class CreditTest {
         creditPage.checkRequiredField(); //TODO Изменить надпись под полем Номер карты на "Поле обязательно для заполнения"
     }
 
-    //MonthField
-    //failed
+
     @Test
-    @Order(1)
     void shouldNotBuyInCreditGateWithInvalidMonth() {
         Card card = new Card(getApprovedNumber(), "00", getNextYear(), getValidName(), getValidCvc());
         val startPage = new StartPage();
@@ -127,7 +118,6 @@ public class CreditTest {
 
     //passed
     @Test
-    @Order(2)
     void shouldNotBuyInCreditGateWithNonExistingMonth() {
         Card card = new Card(getApprovedNumber(), "13", getNextYear(), getValidName(), getValidCvc());
         val startPage = new StartPage();
@@ -140,7 +130,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(3)
     void shouldNotBuyInCreditGateWithExpiredMonth() {
         Card card = new Card(getApprovedNumber(), getLastMonth(), getCurrentYear(), getValidName(), getValidCvc());
         val startPage = new StartPage();
@@ -152,7 +141,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(4)
     void shouldNotBuyInCreditGateWithEmptyMonth() {
         Card card = new Card(getApprovedNumber(), null, getNextYear(), getValidName(), getValidCvc());
         val startPage = new StartPage();
@@ -162,10 +150,8 @@ public class CreditTest {
         creditPage.checkRequiredField(); //TODO Изменить надпись под полем Месяц на "Поле обязательно для заполнения"
     }
 
-    //YearField
     //passed
     @Test
-    @Order(1)
     void shouldNotBuyInCreditGateWithExpiredYear() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getLastYear(), getValidName(), getValidCvc());
         val startPage = new StartPage();
@@ -177,7 +163,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(2)
     void shouldNotBuyInCreditGateWithEmptyYear() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), null, getValidName(), getValidCvc());
         val startPage = new StartPage();
@@ -187,10 +172,9 @@ public class CreditTest {
         creditPage.checkRequiredField(); //TODO Изменить надпись под полем Год на "Поле обязательно для заполнения"
     }
 
-    //NameField
+
     //failed
     @Test
-    @Order(1)
     void shouldNotBuyInCreditGateWithOnlyName() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), getOnlyName(), getValidCvc());
         val startPage = new StartPage();
@@ -202,7 +186,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(2)
     void shouldNotBuyInCreditGateWithOnlyNameInLatinLetters() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), getOnlyNameInLatinLetters(), getValidCvc());
         val startPage = new StartPage();
@@ -214,7 +197,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(3)
     void shouldNotBuyInCreditGateWithOnlySurname() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), getOnlySurname(), getValidCvc());
         val startPage = new StartPage();
@@ -226,7 +208,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(4)
     void shouldNotBuyInCreditGateWithOnlySurnameInLatinLetters() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), getOnlySurnameInLatinLetters(), getValidCvc());
         val startPage = new StartPage();
@@ -238,7 +219,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(5)
     void shouldNotBuyInCreditGateWithNameAndSurnameWithDash() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), "Иван-Иванов", getValidCvc());
         val startPage = new StartPage();
@@ -250,7 +230,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(6)
     void shouldNotBuyInCreditGateWithTooLongName() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), getTooLongName(), getValidCvc());
         val startPage = new StartPage();
@@ -262,7 +241,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(7)
     void shouldNotBuyInCreditGateWithDigitsInName() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), getNameWithNumbers(), getValidCvc());
         val startPage = new StartPage();
@@ -274,7 +252,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(8)
     void shouldNotBuyInCreditGateWithTooShortName() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), getNameWithOneLetter(), getValidCvc());
         val startPage = new StartPage();
@@ -286,7 +263,6 @@ public class CreditTest {
 
     //passed
     @Test
-    @Order(9)
     void shouldNotBuyInCreditGateWithEmptyName() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), null, getValidCvc());
         val startPage = new StartPage();
@@ -298,7 +274,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(10)
     void shouldNotBuyInCreditGateWithSpaceInsteadOfName() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), " ", getValidCvc());
         val startPage = new StartPage();
@@ -308,10 +283,8 @@ public class CreditTest {
         creditPage.checkInvalidDataName(); //TODO Изменить надпись под полем Владелец "Значение поля может содержать только буквы и дефис"
     }
 
-    //CVC/CVVField
     //failed
     @Test
-    @Order(1)
     void shouldNotBuyInCreditGateWithOneDigitInCvc() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), getValidName(), getCvcWithOneDigit());
         val startPage = new StartPage();
@@ -323,7 +296,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(2)
     void shouldNotBuyInCreditGateWithTwoDigitsInCvc() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), getValidName(), getCvcWithTwoDigits());
         val startPage = new StartPage();
@@ -335,7 +307,6 @@ public class CreditTest {
 
     //failed
     @Test
-    @Order(3)
     void shouldNotBuyInCreditGateWithEmptyCvc() {
         Card card = new Card(getApprovedNumber(), getCurrentMonth(), getNextYear(), getValidName(), null);
         val startPage = new StartPage();
@@ -345,10 +316,8 @@ public class CreditTest {
         creditPage.checkRequiredField(); //TODO Изменить надпись под полем CVC на "Поле обязательно для заполнения"
     }
 
-    //AllEmptyFields
     //failed
     @Test
-    @Order(1)
     void shouldNotBuyInCreditGateWithAllEmptyFields() {
         Card card = new Card(null, null, null, null, null);
         val startPage = new StartPage();
